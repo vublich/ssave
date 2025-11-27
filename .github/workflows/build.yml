@@ -1,3 +1,4 @@
+
 name: Build APK
 
 on:
@@ -11,9 +12,9 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Docker
+      - name: Build Docker image
         run: docker build -t apk-builder .
 
       - name: Run build script inside Docker
@@ -22,5 +23,5 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-        name: modded-apk
-        path: StorySave/dist/StorySave.apk
+          name: modded-apk
+          path: StorySave/dist/StorySave.apk
