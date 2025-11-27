@@ -20,7 +20,7 @@ jobs:
         run: docker run --rm -v ${{ github.workspace }}:/app apk-builder bash build.sh
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: modded-apk
-          path: StorySave/dist/StorySave.apk
+        name: modded-apk
+        path: StorySave/dist/StorySave.apk
