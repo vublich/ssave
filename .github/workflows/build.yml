@@ -1,8 +1,6 @@
 name: Build APK
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -12,6 +10,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Download APK
+        run: wget -O StorySave.apk "https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=825476&key=20424ec637e167ac163dfe24ad124f799f2023b0"
 
       - name: Build Docker image
         run: docker build -t apk-builder .
