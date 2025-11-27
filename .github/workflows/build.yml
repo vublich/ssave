@@ -1,0 +1,26 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        run: docker build -t apk-builder .
+
+      - name: Run build script inside Docker
+        run: docker run --rm -v ${{ github.workspace }}:/app apk-builder bash build.sh
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: modded-apk
+          path: StorySave/dist/StorySave.apk
